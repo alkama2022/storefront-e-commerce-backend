@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.venv/
+env/
+myenv/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Django static/media files
+staticfiles/
+media/
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Django migrations
+# Usually DO NOT ignore migrations.
+# Keep migrations in Git.

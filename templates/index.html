@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova — Build faster with intelligent tools</title>
+  <meta name="description"
+    content="Nova helps teams build faster with intelligent tools. Streamline workflow, collaborate, and ship better products.">
+  <!-- Google Font & preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f9fafc;
+      color: #0e1c2c;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* ---------- TYPOGRAPHY & LINKS ---------- */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      background: rgba(249, 250, 252, 0.8);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1e2b3c, #2b4a6f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1e2b3c;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.15s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .btn-outline {
+      border: 1.5px solid #cddae9;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      background: transparent;
+      transition: all 0.2s ease;
+      color: #1e2b3c;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .btn-outline:hover {
+      border-color: #2563eb;
+      color: #2563eb;
+      background: #ffffff;
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn-primary {
+      background: #1e2b3c;
+      color: white;
+      padding: 14px 34px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.1s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #1e2b3c;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background: #eaf0f8;
+    }
+
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      padding: 40px 0 80px;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1 1 380px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #e6edf8;
+      color: #2563eb;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #0b1a2a;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(145deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #38516b;
+      max-width: 540px;
+      margin-bottom: 36px;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .hero-visual {
+      flex: 1 1 360px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* abstract visual card */
+    .visual-card {
+      background: linear-gradient(145deg, #ffffff, #f0f5fe);
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 1 / 0.9;
+      border-radius: 48px;
+      box-shadow: 0 30px 50px -20px rgba(0, 30, 60, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-card::before {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, #a7c5fd 0%, transparent 70%);
+      top: -30px;
+      right: -30px;
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    .visual-card::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, #ddd6fe 0%, transparent 70%);
+      bottom: -70px;
+      left: -50px;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .mock-interface {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 70%;
+    }
+
+    .mock-line {
+      height: 16px;
+      background: #d3e0f5;
+      border-radius: 20px;
+      width: 100%;
+      opacity: 0.8;
+    }
+
+    .mock-line.short {
+      width: 70%;
+    }
+
+    .mock-line.medium {
+      width: 85%;
+    }
+
+    .mock-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #b1cbf5, #8aa9ee);
+      box-shadow: 0 8px 18px -6px #2563eb40;
+      margin-bottom: 8px;
+    }
+
+    /* ---------- SECTIONS GENERAL ---------- */
+    .section {
+      padding: 80px 0;
+      display: none;
+      /* hidden by default, controlled by JS */
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .section-head h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0b1a2a;
+      margin-bottom: 16px;
+    }
+
+    .section-head p {
+      font-size: 1.2rem;
+      color: #4e627c;
+    }
+
+    /* ---------- FEATURES GRID ---------- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 36px 28px;
+      border-radius: 32px;
+      box-shadow: 0 10px 30px -12px rgba(0, 20, 40, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #eef3fa;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 40px -18px rgba(37, 99, 235, 0.2);
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      background: #e6edfe;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+      color: #2563eb;
+    }
+
+    .feature-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #0e1c2c;
+    }
+
+    .feature-card p {
+      color: #4f647d;
+      font-size: 1rem;
+    }
+
+    /* ---------- PRICING GRID ---------- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin-top: 20px;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 32px;
+      padding: 40px 28px;
+      box-shadow: 0 10px 30px -12px rgba(0, 20, 40, 0.08);
+      border: 1px solid #eef3fa;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 40px -18px rgba(37, 99, 235, 0.2);
+    }
+
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0e1c2c;
+      margin: 16px 0 8px;
+    }
+
+    .pricing-price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #64748b;
+    }
+
+    .pricing-desc {
+      color: #5c6f88;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin: 24px 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #2d4057;
+      font-size: 0.95rem;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    /* ---------- CONTACT / FORM ---------- */
+    .contact-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 32px;
+      padding: 48px 40px;
+      box-shadow: 0 10px 30px -12px rgba(0, 20, 40, 0.08);
+      border: 1px solid #eef3fa;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: #1e2b3c;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1.5px solid #dce4ef;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #f9fafc;
+      color: #0e1c2c;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      background: #ffffff;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-message {
+      margin-top: 20px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-message.success {
+      display: block;
+      background: #e6f7ec;
+      color: #0e6b3e;
+      border: 1px solid #b7e4c7;
+    }
+
+    .form-message.error {
+      display: block;
+      background: #fde8e8;
+      color: #b91c1c;
+      border: 1px solid #f5c2c2;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      margin-top: auto;
+      padding: 40px 0;
+      border-top: 1px solid #dfe8f2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #5c6f88;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #5c6f88;
+      transition: color 0.15s;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: #2563eb;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero {
+        padding: 20px 0 60px;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .contact-wrapper {
+        padding: 32px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 18px;
+      }
+
+      .feature-card {
+        padding: 28px 20px;
+      }
+
+      .section-head h2 {
+        font-size: 1.8rem;
+      }
+
+      .pricing-price {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- ---------- HEADER ---------- -->
+    <header>
+      <nav class="navbar">
+        <a class="logo" data-page="home">Nova</a>
+        <ul class="nav-links">
+          <li><a data-page="home">Home</a></li>
+          <li><a data-page="features">Features</a></li>
+          <li><a data-page="pricing">Pricing</a></li>
+          <li><a data-page="contact">Contact</a></li>
+          <li><span class="btn-outline" data-page="contact">Sign in</span></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ---------- MAIN ---------- -->
+    <main>
+      <!-- ===== HOME SECTION ===== -->
+      <section id="home" class="section active">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="hero-badge">✨ Introducing Nova 2.0</div>
+            <h1>Build faster with <span>intelligent tools</span></h1>
+            <p>Streamline your workflow, collaborate seamlessly, and ship better products — all in one calm, focused
+              workspace.</p>
+            <div class="cta-group">
+              <button class="btn-primary" data-page="pricing">Start for free</button>
+              <button class="btn-secondary" data-page="features">📄 Watch demo →</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="visual-card">
+              <div class="mock-interface">
+                <div class="mock-circle"></div>
+                <div class="mock-line medium"></div>
+                <div class="mock-line"></div>
+                <div class="mock-line short"></div>
+                <div class="mock-line medium"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- feature preview on home -->
+        <div style="padding: 40px 0 20px;">
+          <div class="section-head">
+            <h2>Why teams choose Nova</h2>
+            <p>Everything you need to move faster — thoughtfully designed.</p>
+          </div>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Lightning fast</h3>
+              <p>Optimized for speed, so you never wait for your tools. Instant sync and real‑time updates.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🔒</div>
+              <h3>Secure by design</h3>
+              <p>End‑to‑end encryption, SSO, and granular permissions keep your data safe and compliant.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🧩</div>
+              <h3>Integrates with</h3>
+              <p>Connect with Slack, GitHub, Figma, and 80+ other tools your team already loves.</p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 40px;">
+            <button class="btn-primary" data-page="features">Explore all features</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FEATURES SECTION ===== -->
+      <section id="features" class="section">
+        <div class="section-head">
+          <h2>Everything you need to move faster</h2>
+          <p>Thoughtfully designed features that help your team do their best work.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Lightning fast</h3>
+            <p>Optimized for speed, so you never wait for your tools. Instant sync and real‑time updates.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure by design</h3>
+            <p>End‑to‑end encryption, SSO, and granular permissions keep your data safe and compliant.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🧩</div>
+            <h3>Integrates with</h3>
+            <p>Connect with Slack, GitHub, Figma, and 80+ other tools your team already loves.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Insightful analytics</h3>
+            <p>Understand progress at a glance with real‑time dashboards and custom reports.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Real‑time sync</h3>
+            <p>Collaborate without boundaries. Changes appear instantly across all devices and teammates.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Custom workflows</h3>
+            <p>Tailor Nova to your process with flexible boards, automations, and custom fields.</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 48px;">
+          <button class="btn-primary" data-page="pricing">Get started — it's free</button>
+        </div>
+      </section>
+
+      <!-- ===== PRICING SECTION ===== -->
+      <section id="pricing" class="section">
+        <div class="section-head">
+          <h2>Simple, transparent pricing</h2>
+          <p>Start free, upgrade when you're ready. No hidden fees.</p>
+        </div>
+        <div class="pricing-grid">
+          <!-- Free -->
+          <div class="pricing-card">
+            <h3>Starter</h3>
+            <div class="pricing-price">$0 <span>/ month</span></div>
+            <p class="pricing-desc">For individuals and small projects.</p>
+            <ul class="pricing-features">
+              <li>Up to 3 projects</li>
+              <li>Basic analytics</li>
+              <li>1 GB storage</li>
+              <li>Community support</li>
+            </ul>
+            <button class="btn-primary btn-block" data-page="contact">Get started</button>
+          </div>
+          <!-- Pro -->
+          <div class="pricing-card" style="border: 2px solid #2563eb; position: relative;">
+            <div
+              style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #2563eb; color: white; padding: 4px 16px; border-radius: 30px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.3px;">
+              MOST POPULAR</div>
+            <h3>Pro</h3>
+            <div class="pricing-price">$29 <span>/ month</span></div>
+            <p class="pricing-desc">For growing teams that need more power.</p>
+            <ul class="pricing-features">
+              <li>Unlimited projects</li>
+              <li>Advanced analytics</li>
+              <li>100 GB storage</li>
+              <li>Priority support</li>
+              <li>Custom integrations</li>
+            </ul>
+            <button class="btn-primary btn-block" data-page="contact">Start free trial</button>
+          </div>
+          <!-- Enterprise -->
+          <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <div class="pricing-price">$99 <span>/ month</span></div>
+            <p class="pricing-desc">For organizations with advanced needs.</p>
+            <ul class="pricing-features">
+              <li>Everything in Pro</li>
+              <li>SSO &amp; SCIM</li>
+              <li>Unlimited storage</li>
+              <li>Dedicated success manager</li>
+              <li>Custom SLA</li>
+            </ul>
+            <button class="btn-primary btn-block" data-page="contact">Contact sales</button>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 48px;">
+          <p style="color: #5c6f88;">All plans include a 14‑day free trial. No credit card required.</p>
+        </div>
+      </section>
+
+      <!-- ===== CONTACT SECTION ===== -->
+      <section id="contact" class="section">
+        <div class="section-head">
+          <h2>Get in touch</h2>
+          <p>We'd love to hear from you. Fill out the form and we'll get back within 24 hours.</p>
+        </div>
+        <div class="contact-wrapper">
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-block" style="margin-top: 8px;">Send message</button>
+            <div id="formMessage" class="form-message"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- ---------- FOOTER ---------- -->
+    <footer class="footer">
+      <div>© 2025 Nova. All rights reserved.</div>
+      <div class="footer-links">
+        <a data-page="home">Home</a>
+        <a data-page="features">Features</a>
+        <a data-page="pricing">Pricing</a>
+        <a data-page="contact">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ---------- SPA ROUTER & INTERACTIONS ---------- -->
+  <script>
+    (function () {
+      'use strict';
+
+      // --- page routing ---
+      const sections = document.querySelectorAll('.section');
+      const navLinks = document.querySelectorAll('[data-page]');
+
+      function showPage(pageId) {
+        // hide all sections
+        sections.forEach(sec => sec.classList.remove('active'));
+        // show target section
+        const target = document.getElementById(pageId);
+        if (target) {
+          target.classList.add('active');
+        } else {
+          // fallback to home if unknown
+          document.getElementById('home').classList.add('active');
+        }
+        // scroll to top for better UX
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+
+      // attach click listeners to all elements with data-page
+      navLinks.forEach(el => {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          const page = this.dataset.page;
+          if (page) {
+            showPage(page);
+            // update URL hash (optional, helps with back button)
+            history.replaceState(null, '', '#' + page);
+          }
+        });
+      });
+
+      // handle initial load from hash
+      function handleHash() {
+        const hash = window.location.hash.replace('#', '');
+        const validPages = ['home', 'features', 'pricing', 'contact'];
+        if (hash && validPages.includes(hash)) {
+          showPage(hash);
+        } else {
+          showPage('home');
+        }
+      }
+
+      window.addEventListener('hashchange', handleHash);
+      handleHash();
+
+      // --- contact form handling ---
+      const form = document.getElementById('contactForm');
+      const formMessage = document.getElementById('formMessage');
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          formMessage.className = 'form-message';
+          formMessage.textContent = '';
+
+          const name = document.getElementById('name').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const message = document.getElementById('message').value.trim();
+
+          // simple validation
+          if (!name || !email || !message) {
+            formMessage.className = 'form-message error';
+            formMessage.textContent = '⚠️ Please fill in all fields.';
+            return;
+          }
+
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            formMessage.className = 'form-message error';
+            formMessage.textContent = '⚠️ Please enter a valid email address.';
+            return;
+          }
+
+          // simulate success (in production you'd send to a server)
+          formMessage.className = 'form-message success';
+          formMessage.textContent = '✅ Thank you, ' + name + '! We\'ll be in touch soon.';
+
+          // reset form after 2 seconds (optional)
+          setTimeout(() => {
+            form.reset();
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+          }, 4000);
+        });
+      }
+
+      // --- log for production readiness ---
+      console.log('✅ Nova site loaded — all sections ready.');
+    })();
+  </script>
+</body>
+
+</html>

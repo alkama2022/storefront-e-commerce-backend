@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'store',
     'tags',
     'likes',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

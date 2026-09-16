@@ -28,7 +28,8 @@ class Product(models.Model):
 
     collection = models.ForeignKey(
         Collection,
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        related_name='products'
     )
 
     promotions = models.ManyToManyField(

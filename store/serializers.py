@@ -7,20 +7,20 @@ from .models import Product,Collection
 class CollectionSeriliazer(serializers.ModelSerializer):
   class Meta:
     model = Collection
-    fields = ['id','title']
-  # id = serializers.IntegerField()
-  # title = serializers.CharField(max_length = 255)
-
-class productSerializer(serializers.ModelSerializer):
+    fields = ['id','title','product_count']
+    
+    product_count = serializers.IntegerField()
+    
+class ProductSerializer(serializers.ModelSerializer):
   class Meta:
     model = Product
     fields = ['id','title','price','price_with_tax','collection']
   price_with_tax = serializers.SerializerMethodField(method_name='calculate_tax')
   
-  collection = serializers.HyperlinkedRelatedField(
-    queryset = Product.objects.all(),
-    view_name ='collection-detail'
-  )
+  # collection = serializers.HyperlinkedRelatedField(
+  #   queryset = Product.objects.all(),
+  #   view_name ='collection-detail'
+  # )
   
   # collection = serializers.StringRelatedField()
   

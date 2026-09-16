@@ -1,3 +1,5 @@
+from itertools import product
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import status
@@ -5,16 +7,24 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-from .models import Product
+from .models import Product,Collection
 from .serializers import productSerializer
 
 @api_view()
 def product_list(request):
-  product = Product.objects.all()
-  serializer = productSerializer(serializer.data)
-  return Response('ok')
+  product = Product.objects.select_related('collection').all()
+  serializer = productSerializer(product,context={'request' : request})
+  return Response(serializer.data)
 
-def product_detail(request,id):
-  product = Product.objects.get(pk=id)
+@api_view()
+def product_detail(request,pk):
+  product = Product.objects.get(pk=pk)
   serialize = productSerializer(product)
+  return Response(serialize.data)
+
+
+@api_view()
+def collection_detail(request,pk):
+  collection = Collection.objects.get(pk=pk)
+  serialize = productSerializer(collection)
   return Response(serialize.data)

@@ -1,6 +1,5 @@
-
 from django.db import models
-
+from uuid import uuid4
 
 class Promotion(models.Model):
     description = models.CharField(max_length=255)
@@ -199,3 +198,35 @@ class Review(models.Model):
     def __str__(self):
         return f'{self.customer} - {self.product}'
 
+
+class Cart(models.Model):
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid4
+    )
+    created_at = models.DateTimeField(
+        auto_now=True
+    )
+    def __str__(self):
+        return f'Cart {self.id}'
+    
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE
+    )
+
+    quantity = models.PositiveSmallIntegerField()
+
+    class Meta:
+        unique_together = [['cart', 'product']]
+
+    def __str__(self):
+        return f'{self.quantity} x {self.product.title}'

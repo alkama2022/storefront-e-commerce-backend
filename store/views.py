@@ -1,26 +1,29 @@
-
 from django.db.models import Count
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
-from .models import Product, Collection, OrderItem, Review
-from .serializers import (
-    ProductSerializer,
-    CollectionSerializer,
-    ReviewSerializer,
-)
+from store.fielters import ProductFilter
+from . import models
+from . import serializers
 
 
 class ProductViewSet(ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
+    filterset_class = ProductFilter
+    search_fields = ['name', 'description']
+    ordering_fields = ['price', 'name']
+
+    queryset = models.Product.objects.all()
+    serializer_class = serializers.ProductSerializer
 
     def destroy(self, request, *args, **kwargs):
         product = self.get_object()
 
-        if OrderItem.objects.filter(product=product).exists():
+        if models.OrderItem.objects.filter(product=product).exists():
             return Response(
                 {
                     'error': (
@@ -35,10 +38,10 @@ class ProductViewSet(ModelViewSet):
 
 
 class CollectionViewSet(ModelViewSet):
-    queryset = Collection.objects.annotate(
+    queryset = models.Collection.objects.annotate(
         product_count=Count('products')
     )
-    serializer_class = CollectionSerializer
+    serializer_class = serializers.CollectionSerializer
 
     def destroy(self, request, *args, **kwargs):
         collection = self.get_object()
@@ -58,6 +61,10 @@ class CollectionViewSet(ModelViewSet):
 
 
 class ReviewViewSet(ModelViewSet):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
+    def get_queryset(self):
+        return models.Review.objects.filter(product_id=self.kwargs['product_pk'])
+    serializer_class = serializers.ReviewSerializer
+    
+    def get_serializer_context(self):
+        return {'product_id': self.kwargs['product_pk']}
 

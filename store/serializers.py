@@ -42,8 +42,11 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'customer',
-            'product',
             'description',
             'created_at',
         ]
+        
+        def save(self, **kwargs):
+            product_id = self.context['product_id']
+            return Review.objects.create(product_id=product_id, **self.validated_data)
 

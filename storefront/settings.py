@@ -139,17 +139,26 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    
     #'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
     #'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.LimitOffsetPagination',
     # 'PAGE_SIZE' : 10,
 }
-
+from datetime import timedelta
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
+   'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
 }
 DJOSER = {
     'SERIALIZERS' : {
         'user_create' : 'core.serializers.UserCreateSerializer',
+        'current_user': 'core.serializers.UserSerializer'
     }
 }
 AUTH_USER_MODEL = 'core.User'
+
+
+
+
+
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg5NzgyMTc2LCJpYXQiOjE3ODk2OTU3NzYsImp0aSI6ImI4YmRmNmY5MDlmZTRlNTdiY2YxZjgyYzFjNjY0MmFmIiwidXNlcl9pZCI6IjEifQ.m5GKQmeA_09DE6piesrjI2mCK-SIkAVohtcqfOi_e2s

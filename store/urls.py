@@ -30,6 +30,7 @@ router.register(
     basename="customer",
 )
 
+router.register('orders',views.OrderViewSet,basename='order')
 
 # /carts/<cart_pk>/items/
 cart_router = NestedDefaultRouter(
@@ -59,8 +60,11 @@ product_router.register(
 )
 
 
+
+
 urlpatterns = (
     router.urls
     + cart_router.urls
     + product_router.urls
+   
 )

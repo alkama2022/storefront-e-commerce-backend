@@ -24,6 +24,12 @@ router.register(
     basename="cart",
 )
 
+router.register(
+    "customers",
+    views.CustomerViewSet,
+    basename="customer",
+)
+
 
 # /carts/<cart_pk>/items/
 cart_router = NestedDefaultRouter(

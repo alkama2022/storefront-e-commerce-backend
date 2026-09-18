@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'core',
     #third party library
     'rest_framework',
+    'djoser',
     'django_filters',
 ]
 
@@ -135,10 +136,20 @@ INTERNAL_IPS = [
 
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING' : False,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     #'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
     #'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.LimitOffsetPagination',
     # 'PAGE_SIZE' : 10,
 }
 
-
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
+DJOSER = {
+    'SERIALIZERS' : {
+        'user_create' : 'core.serializers.UserCreateSerializer',
+    }
+}
 AUTH_USER_MODEL = 'core.User'

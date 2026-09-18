@@ -1,5 +1,6 @@
 from django.db import models
 from uuid import uuid4
+from django.conf import settings
 
 class Promotion(models.Model):
     description = models.CharField(max_length=255)
@@ -71,18 +72,6 @@ class Customer(models.Model):
         (MEMBERSHIP_GOLD, 'Gold'),
     )
 
-    first_name = models.CharField(
-        max_length=255
-    )
-
-    last_name = models.CharField(
-        max_length=255
-    )
-
-    email = models.EmailField(
-        unique=True
-    )
-
     phone = models.CharField(
         max_length=20
     )
@@ -97,9 +86,11 @@ class Customer(models.Model):
         choices=MEMBERSHIP_CHOICES,
         default=MEMBERSHIP_BRONZE
     )
+    
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.user.first_name} {self.user.last_name}'
 
 
 class Order(models.Model):

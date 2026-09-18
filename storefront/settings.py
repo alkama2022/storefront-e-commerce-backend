@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'store',
     'tags',
     'likes',
+    'core',
     #third party library
     'rest_framework',
     'django_filters',
@@ -138,3 +139,6 @@ REST_FRAMEWORK = {
     #'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.LimitOffsetPagination',
     # 'PAGE_SIZE' : 10,
 }
+
+
+AUTH_USER_MODEL = 'core.User'

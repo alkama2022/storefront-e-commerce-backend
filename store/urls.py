@@ -60,6 +60,20 @@ product_router.register(
 )
 
 
+# /products/<product_pk>/images/
+product_router = NestedDefaultRouter(
+    router,
+    "products",
+    lookup="product",
+)
+
+product_router.register(
+    "images",
+    views.ProductImageViewSet,
+    basename="product-images",
+)
+
+
 
 
 urlpatterns = (

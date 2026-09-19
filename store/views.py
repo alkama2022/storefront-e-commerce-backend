@@ -24,7 +24,7 @@ class ProductViewSet(ModelViewSet):
     ordering_fields = ['price', 'name']
     pagination_class = DefaultPagination
     permission_classes = [IsAdminOrReadOnly]
-    queryset = models.Product.objects.all()
+    queryset = models.Product.objects.prefetch_related('images').all()
     serializer_class = serializers.ProductSerializer
 
     def destroy(self, request, *args, **kwargs):
@@ -159,3 +159,10 @@ class OrderViewSet(ModelViewSet):
         return models.Order.objects.filter(customer_id=customer_id)
 
 
+class ProductImageViewSet(ModelViewSet):
+    serializer_class = serializers.ProductImageSerialize
+    def get_queryset(self):
+        return models.ProductImage.objects.filter(product_id = self.kwargs['product_pk'])
+    
+    def get_serializer_context(self):
+        return {'product_id' : self.kwargs['product_pk']}

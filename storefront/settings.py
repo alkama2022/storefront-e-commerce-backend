@@ -117,6 +117,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_URL = os.path.join(BASE_DIR,'media/')
 
 
 # Email
@@ -159,6 +161,13 @@ AUTH_USER_MODEL = 'core.User'
 
 
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASWORD = ''
+EMAIL_PORT = 2525
+DEFAULTE_FROM_EMAIL = 'admin@gmail.com'
 
 # eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg5NzgyMTc2LCJpYXQiOjE3ODk2OTU3NzYsImp0aSI6ImI4YmRmNmY5MDlmZTRlNTdiY2YxZjgyYzFjNjY0MmFmIiwidXNlcl9pZCI6IjEifQ.m5GKQmeA_09DE6piesrjI2mCK-SIkAVohtcqfOi_e2s
+
+
